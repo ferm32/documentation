@@ -1,5 +1,6 @@
-## Polib - a library to manipulate gettext files (po and mo files).
+## Polib - a library to manipulate gettext (po and mo) files.
 Актуализировано для polib 1.03 (2013/02/09)
+
 Примечание. Сокращены сведения о манипуляциях с mo-файлами.
 [Polib in PyPI packages index](https://pypi.python.org/pypi/polib)
 
