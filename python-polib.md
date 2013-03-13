@@ -77,13 +77,13 @@
     print po.percent_translated()
 
 
-#### The escape function
+#### Функция `escape`
 
     polib.escape(st)[source]
 
 Escapes the characters \\, \t, \n, \r and " in the given string st and returns it.
 
-#### The unescape function
+#### Функция `unescape`
 
     polib.unescape(st)[source]
 
