@@ -1,6 +1,6 @@
 ## Polib - a library to manipulate gettext files (po and mo files).
 Актуализировано для polib 1.03 (2013/02/09)
-
+Примечание. Сокращены сведения о манипуляциях с mo-файлами.
 [Polib in PyPI packages index](https://pypi.python.org/pypi/polib)
 
 
@@ -74,4 +74,18 @@
     po = polib.pofile('path/to/catalog.po')
     print po.percent_translated()
 
-Примечание. Сокращены сведения о манипуляциях с mo-файлами.
+
+#### The escape function
+
+    polib.escape(st)[source]
+
+Escapes the characters \\, \t, \n, \r and " in the given string st and returns it.
+
+#### The unescape function
+
+    polib.unescape(st)[source]
+
+Unescapes the characters \\, \t, \n, \r and " in the given string st and returns it.
+
+
+
