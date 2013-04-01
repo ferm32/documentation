@@ -17,13 +17,20 @@
 
 Флаг `echo` это включение журнала регистрации действий SQLAlchemy, который работает через стандартный модуль Python `logging`. Когда он включен, мы увидим все сгенерированные команды SQL. Если Вы, работая с данным Руководством, хотите генерировать не так много выходной информации, присвойте этому параметру `False`.
 
- This tutorial will format the SQL behind a popup window so it doesn’t get in our way; just click the “SQL” links to see what’s being generated.
+Для соединения с БД MySQL используйте следующую конструкцию:
 
-The return value of create_engine() is an instance of Engine, and it represents the core interface to the database, adapted through a dialect that handles the details of the database and DBAPI in use. In this case the SQLite dialect will interpret instructions to the Python built-in sqlite3 module.
+    engine = create_engine(
+                "mysql://scott:tiger@localhost/test",
+                pool_recycle=3600
+            )
 
-The Engine has not actually tried to connect to the database yet; that happens only the first time it is asked to perform a task against the database. We can illustrate this by asking it to perform a simple SELECT statement:
+Опция `pool_recycle` контролирует время жизни соединения.
 
-sql>>> engine.execute("select 1").scalar()
-1
+Возвращаемое процедурой `create_engine()` значение это экземпляр движка ("Engine"), который представляет ядро интерфейса к БД, адаптированное к диалекту, работающему с деталями взаимодействия с БД и API. Под диалектом подразумевается SQLite, MySQL и т. д., которые будут интерпретировать инструкции к встроенным модулям Python типа sqlite3.
 
-As the Engine.execute() method is called, the Engine establishes a connection to the SQLite database, which is then used to emit the SQL. The connection is then returned to an internal connection pool where it will be reused on subsequent statement executions. While we illustrate direct usage of the Engine here, this isn’t typically necessary when using the ORM, where the Engine, once created, is used behind the scenes by the ORM as we’ll see shortly.
+Движок в действительности пока не пытался соединиться к БД; впервые это происходит лишь тогда, когда будет запрошено выполнение действия с БД. Мы можем проиллюстрировать это, запросив выполнение простого оператора `SELECT`:
+
+  sql>>> engine.execute("select 1").scalar()
+  1
+
+Соединение с БД будет установлено лишь в момент вызова метода `Engine.execute()`, который используется для исполнения SQL-запроса. Далее соединение будет возвращено во внутренний пул соединений, где он будет находиться для дальнейшего использования при выполнеиии последующих операторов. Подобное прямое использование движка нетепично в рамках ORM, так как он обычно используется неявно, "за кулисами", что мы вскоре и увидим.
