@@ -1,7 +1,7 @@
 ##Написание скриптов для внешних виртауальных файловых систем (vfs) Midnight Commander
 Исходный файл: https://www.midnight-commander.org/browser/src/vfs/extfs/helpers/README
 
-Стоит таже посмотреть черновик README.extfs от Adam Byrtekот https://mail.gnome.org/archives/mc-devel/2002-December/msg00131.html
+Стоит таже посмотреть черновик README.extfs от Adam Byrtek https://mail.gnome.org/archives/mc-devel/2002-December/msg00131.html
 
 **ВАЖНОЕ ЗАМЕЧАНИЕ:** В extfs всё ещё могут оставаться некоторые баги. Удачи.
 
