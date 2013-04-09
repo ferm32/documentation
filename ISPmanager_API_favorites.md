@@ -3,6 +3,8 @@
 
 Оригинал: [http://ru.ispdoc.com/index.php/ISPmanager_API](http://ru.ispdoc.com/index.php/ISPmanager_API)
 
+С примерами из разных языков программирования: http://en.ispdoc.com/index.php/Working_with_API
+
 Для отладки работы API удобно использовать файл  /usr/local/ispmgr/var/ispmgr.log
 Для того, чтобы отследить, какие команды через API выдаются из веб-панели ISPmanager, можно посмотреть сюда же.
 
