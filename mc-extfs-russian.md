@@ -1,4 +1,4 @@
-##Написание скриптов для внешних виртауальных файловых систем (vfs) Midnight Commander
+## Написание скриптов для внешних виртауальных файловых систем (vfs) Midnight Commander
 Исходный файл: https://github.com/MidnightCommander/mc/blob/master/src/vfs/extfs/helpers/README
 
 Стоит таже посмотреть черновик README.extfs от Adam Byrtek https://mail.gnome.org/archives/mc-devel/2002-December/msg00131.html
@@ -34,7 +34,7 @@
 
     $libdir/extfs/prefix command [arguments]
 
-####Команда: list archivename
+#### Команда: list archivename
 
 Данная команда должна вывести полный список содержимого архива в следующем
 формате (слегка изменённый формат вывода команды ls -l):
@@ -66,11 +66,11 @@
 
 Результат команды `list` не должен содержать элементов "." и "..".
 
-####Команда: copyout archivename storedfilename extractto
+#### Команда: copyout archivename storedfilename extractto
 
 Должна излечь из архива `archivename` файл `storedfilename` в файл `extractto`.
 
-####Команда: copyin archivename storedfilename sourcefile
+#### Команда: copyin archivename storedfilename sourcefile
 
 Должна добавить `sourcefile` в архив `archivename` с именем `storedfilename`.
 
@@ -80,20 +80,20 @@ archivename will be something like /tmp/f43513254 or just
 anything. Some archivers do not like it, so you'll have to find some
 workaround.
 
-####Command: rm archivename storedfilename
+#### Command: rm archivename storedfilename
 
 This should remove storedfilename from archivename.
 
-####Command: mkdir archivename dirname
+#### Command: mkdir archivename dirname
 
 This should create a new directory called dirname inside archivename.
 
-####Command: rmdir archivename dirname
+#### Command: rmdir archivename dirname
 
 This should remove an existing directory dirname. If the directory is
 not empty, mc will recursively delete it (possibly prompting).
 
-####Command: run
+#### Command: run
 
 Undocumented :-)
 
@@ -112,7 +112,7 @@ trails in search of the bug.  Since this routine is an executable shell script
 it can be run from the command line independently of mc, and its output will
 show on the console or can be redirected to a file.
 
-####Putting it to use
+#### Putting it to use
 The file .mc.ext in a home directory, and in mc's user directory (commonly
 /etc/mc), contains instructions for operations on files depending
 on filename extensions.  It is well documented in other files in this
