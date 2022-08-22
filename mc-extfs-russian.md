@@ -1,5 +1,5 @@
 ##Написание скриптов для внешних виртауальных файловых систем (vfs) Midnight Commander
-Исходный файл: https://www.midnight-commander.org/browser/src/vfs/extfs/helpers/README
+Исходный файл: https://github.com/MidnightCommander/mc/blob/master/src/vfs/extfs/helpers/README
 
 Стоит таже посмотреть черновик README.extfs от Adam Byrtek https://mail.gnome.org/archives/mc-devel/2002-December/msg00131.html
 
@@ -7,7 +7,7 @@
 
 Начиная с версии 3.1, Midnight Commander идёт с такой штукой, как **extfs**,которая является одной из виртуальных фаловых систем. Эта система делает возможным и очень простым создание новых виртуальных файловых систем для GNU MC.
 
-Для обработки запросов, создайте скрипт (программу) на shell, perl, python и т. п. в директории `$(libexecdir)/mc/extfs.d или в ~/.local/share/mc/extfs.d`.
+Для обработки запросов, создайте скрипт (программу) на shell, perl, python и т. п. в директории `$(libexecdir)/mc/extfs.d или в ~/.local/share/mc/extfs.d/`.
 
 (Замечине: вместо `$(libexecdir)` следует подставить актуальны путь, заданный при конфигурировании или компиляции, например, `/usr/local/libexec` или `/usr/libexec)`.
 
@@ -51,27 +51,28 @@
     FILENAME имя файла
     PATH     путь от корня архива без завершающего слэша (/)
     DATETIME имеет один из следующих форматов:
-                Mon DD hh:mm, Mon DD YYYY, Mon DD YYYY hh:mm, MM-DD-YYYY hh:mm
-    
+                Mon DD hh:mm[:ss], Mon DD YYYY, MM-DD-YYYY hh:mm[:ss]
+
                 где Mon - три буквы из английского названия дня недели,
-                DD - число (1-31), MM - месяц (01-12), YYYY - четырёхзначный год,
-                hh - часы, mm - минуты.
+                DD - число 01-31 (может быть указано как 1-31, если следует на Mon),
+                MM - месяц 01-12, YYYY - четырёхзначный год,
+                hh - часы, mm - минуты, ss - необязательные секунды.
 
 Если присутствует часть `-> [PATH/]FILENAME`, это означает следующее.
 
-Если разрешения начинаются с символа `l`, то это имя, на который указывает симлинк (если PATH начинается с префикса vfs, то это симлинк на какую-либо другую виртуальную файловую систему, если Вы хотите указать путь от локального корня файловой системы, используйте `local:/path_name` вместо `/path_name`, так как `/path_name` будет означать
-путь от корня архива, содержимое которого выводится).
+Если разрешения начинаются с символа `l`, то это имя, на который указывает симлинк (если PATH начинается с префикса vfs, то это симлинк на какую-либо другую виртуальную файловую систему, если Вы хотите указать путь от локального корня файловой системы, используйте `local:/path_name` вместо `/path_name`, так как `/path_name` будет означать путь от корня архива, содержимое которого выводится).
 
-If permissions do not start with l, but number of links is greater than one, then it says that this file should be a hardlinked with the other file.
+Если разрешения не начинаются с символа `l`, но число линков больше одного, то этот файл должен быть жёстко связан (hardlined) с другим файлом.
 
-####Command: copyout archivename storedfilename extractto
+Результат команды `list` не должен содержать элементов "." и "..".
 
-This should extract from archive archivename the file called storedfilename (possibly with path if not located in archive's root ***[this is wrong. current extfs strips paths! -- pavel@ucw.cz])*** to file extractto.
+####Команда: copyout archivename storedfilename extractto
 
-####Command: copyin archivename storedfilename sourcefile
+Должна излечь из архива `archivename` файл `storedfilename` в файл `extractto`.
 
-This should add to the archivename the sourcefile with the name
-storedfilename inside the archive.
+####Команда: copyin archivename storedfilename sourcefile
+
+Должна добавить `sourcefile` в архив `archivename` с именем `storedfilename`.
 
 Important note: archivename in the above examples may not have the
 extension you are expecting to have, like it may happen that
